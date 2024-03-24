@@ -3,6 +3,7 @@
 	email = brendancarlson1125@gmail.com
 [core]
 	editor = nvim
+    excludesfile = ~/.gitignore_global
 [credential]
 	helper =
 	helper = /usr/local/share/gcm-core/git-credential-manager

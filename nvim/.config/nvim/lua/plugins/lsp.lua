@@ -27,7 +27,6 @@ return {
                     "cssls",
                     "dockerls",
                     "docker_compose_language_service",
-                    "html",
                     "yamlls",
                     "bashls",
                     "tailwindcss",
