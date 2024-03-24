@@ -1,25 +1,25 @@
 #!/usr/bin/env bash
 
 if [[ $# -eq 1 ]]; then
-    SELECTED=$1
+    selected=$1
 else
-    SELECTED=$(find ~/personal/projects ~/work ~/freelance -mindepth 1 -maxdepth 1 -type d | fzf)
+    selected=$(find ~/code/projects ~/code/libs ~/code/freelance ~/code/katas ~/code/forks -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
-if [[ -z $SELECTED ]]; then
+if [[ -z $selected ]]; then
     exit 0
 fi
 
-SELECTED_NAME=$(basename "$SELECTED" | tr . _)
-TMUX_RUNNING=$(pgrep tmux)
+selected_name=$(basename "$selected" | tr . _)
+tmux_running=$(pgrep tmux)
 
-if [[ -z $TMUX ]] && [[ -z $TMUX_RUNNING ]]; then
-    tmux new-session -s $SELECTED_NAME -c $SELECTED
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+    tmux new-session -s $selected_name -c $selected
     exit 0
 fi
 
-if ! tmux has-session -t=$SELECTED_NAME 2> /dev/null; then
-    tmux new-session -ds $SELECTED_NAME -c $SELECTED
+if ! tmux has-session -t=$selected_name 2> /dev/null; then
+    tmux new-session -ds $selected_name -c $selected
 fi
 
-tmux switch-client -t $SELECTED_NAME
+tmux switch-client -t $selected_name
