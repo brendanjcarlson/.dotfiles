@@ -38,7 +38,7 @@ vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]]) -- yank to system clipboard
 vim.keymap.set({ 'n', 'v' }, '<leader>Y', [["+Y]])
 vim.keymap.set('i', '<C-c>', '<Esc>') -- idk
 vim.keymap.set('n', 'Q', '<nop>') -- apparently cap q is the worst?
-vim.keymap.set('n', '<leader>xx', '<cmd>silent!chmod +x %<CR>') -- make current file executable
+vim.keymap.set('n', '<leader>xx', ':silent !chmod +x % > /dev/null<CR>') -- make current file executable
 vim.keymap.set('n', '<leader>lsr', '<cmd>LspRestart<CR>') -- restart lsp
 vim.keymap.set('n', '<leader>lsi', '<cmd>LspInfo<CR>') -- show lsp info
 vim.keymap.set('n', '<leader>fw', '<cmd>:w<CR>') -- save
