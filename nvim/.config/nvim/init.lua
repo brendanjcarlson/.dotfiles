@@ -14,6 +14,7 @@ vim.opt.smartindent = true
 vim.opt.guicursor = ''
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.nowrap = true
 vim.opt.signcolumn = 'yes'
 vim.opt.updatetime = 100
 vim.opt.timeoutlen = 300
