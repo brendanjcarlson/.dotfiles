@@ -1,3 +1,4 @@
+-- General options
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.g.have_nerd_font = true
@@ -20,7 +21,7 @@ vim.opt.wrap = false
 vim.opt.timeoutlen = 300
 vim.opt.splitright = true
 vim.opt.splitbelow = true
-vim.opt.list = true
+vim.opt.list = false
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
@@ -30,11 +31,11 @@ vim.opt.incsearch = true
 vim.opt.colorcolumn = '120'
 
 -- Generic remaps
-vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
-vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv") -- in visual mode, easily move lines up and down
-vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+vim.keymap.set('n', '<leader>pv', vim.cmd.Ex) -- open netrw
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv") -- in visual mode, move selected lines down
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv") -- in visual mode, move selected lines up
 vim.keymap.set('n', '<C-u', '<C-u>zz') -- recenter viewport on half page jumps
-vim.keymap.set('n', '<C-d', '<C-d>zz')
+vim.keymap.set('n', '<C-d', '<C-d>zz') -- recenter viewport on half page jumps
 vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]]) -- yank to system clipboard
 vim.keymap.set({ 'n', 'v' }, '<leader>Y', [["+Y]])
 vim.keymap.set('i', '<C-c>', '<Esc>') -- idk
@@ -203,9 +204,18 @@ require('lazy').setup({
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
+
+      local BJC = {} -- namespace for custom commands
+
+      function BJC.find_files() -- find files, including gitignored and hidden (dotfiles) files
+        builtin.find_files {
+          find_command = { 'rg', '--files', '--hidden', '--no-ignore-vcs', '--glob=!**/node_modules/*', '--glob=!**/.git/*', '--glob=!*_templ.go' },
+        }
+      end
+
       vim.keymap.set('n', '<leader>vh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>vk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-      vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = '[S]earch [F]iles' })
+      vim.keymap.set('n', '<leader>pf', BJC.find_files, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<leader>pw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>ps', builtin.live_grep, { desc = '[S]earch by [G]rep' })
@@ -647,15 +657,18 @@ require('lazy').setup({
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
+
   {
-    'tpope/vim-fugitive',
+    'tpope/vim-fugitive', -- better git
   },
+
   {
-    'folke/trouble.nvim',
+    'folke/trouble.nvim', -- better diagnostics
     config = function()
       vim.keymap.set('n', '<leader>tt', '<cmd>TroubleToggle quickfix<CR>')
     end,
   },
+
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',

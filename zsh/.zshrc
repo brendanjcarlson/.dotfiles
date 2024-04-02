@@ -61,3 +61,5 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # gnu coreutils
 export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 
+# local scripts
+export PATH="$PATH:$HOME/.local/scripts"

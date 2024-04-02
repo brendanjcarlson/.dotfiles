@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+stow_packages="git,nvim,ohmyzsh,scripts,tmux,zsh"
+
+IFS="," read -r -a stow_array <<< "$stow_packages"
+
+for package in "${stow_array[@]}"; do
+    stow -R $package
+done
+
+echo "dotfiles setup"
