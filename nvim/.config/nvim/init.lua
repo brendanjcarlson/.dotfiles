@@ -647,6 +647,15 @@ require('lazy').setup({
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
+  {
+    'tpope/vim-fugitive',
+  },
+  {
+    'folke/trouble.nvim',
+    config = function()
+      vim.keymap.set('n', '<leader>tt', '<cmd>TroubleToggle quickfix<CR>')
+    end,
+  },
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
