@@ -209,7 +209,17 @@ require('lazy').setup({
 
       function BJC.find_files() -- find files, including gitignored and hidden (dotfiles) files
         builtin.find_files {
-          find_command = { 'rg', '--files', '--hidden', '--no-ignore-vcs', '--glob=!**/node_modules/*', '--glob=!**/.git/*', '--glob=!*_templ.go' },
+          find_command = {
+            'rg',
+            '--files',
+            '--hidden',
+            '--no-ignore-vcs',
+            '--glob=!**/node_modules/*',
+            '--glob=!**/vendor/*',
+            '--glob=!**/.git/*',
+            '--glob=!*_templ.go',
+            '--glob=!*.fiber.gz',
+          },
         }
       end
 
