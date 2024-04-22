@@ -44,6 +44,7 @@ vim.keymap.set('n', '<leader>xx', ':silent !chmod +x % > /dev/null<CR>') -- make
 vim.keymap.set('n', '<leader>lsr', '<cmd>LspRestart<CR>') -- restart lsp
 vim.keymap.set('n', '<leader>lsi', '<cmd>LspInfo<CR>') -- show lsp info
 vim.keymap.set('n', '<leader>fw', '<cmd>:w<CR>') -- save
+vim.keymap.set('n', '<leader>mk', '<cmd>:make<CR>')
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
@@ -465,7 +466,7 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        go = { 'gofumpt', 'goimports-reviser' },
+        go = { 'gofumpt', 'goimports', 'goimports-reviser' },
         templ = { 'templ' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
@@ -594,8 +595,7 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      -- NOTE: UNCOMMENT TO SWITCH BACK
-      -- vim.cmd.colorscheme 'tokyonight'
+      vim.cmd.colorscheme 'tokyonight-storm'
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
@@ -614,7 +614,7 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'rose-pine-moon'
+      -- vim.cmd.colorscheme 'rose-pine-moon'
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
@@ -622,7 +622,7 @@ require('lazy').setup({
   },
 
   -- Highlight todo, notes, etc in comments
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = true } },
 
   {
     { -- easy file switching
@@ -632,7 +632,7 @@ require('lazy').setup({
         local harpoon = require 'harpoon'
         harpoon:setup()
         vim.keymap.set('n', '<leader>hh', function()
-          harpoon:list():append()
+          harpoon:list():add()
         end)
         vim.keymap.set('n', '<leader>hv', function()
           harpoon.ui:toggle_quick_menu(harpoon:list())

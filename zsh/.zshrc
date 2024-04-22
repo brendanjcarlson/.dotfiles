@@ -63,3 +63,6 @@ export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 
 # local scripts
 export PATH="$PATH:$HOME/.local/scripts"
+
+# fzf stuff
+eval "$(fzf --zsh)"

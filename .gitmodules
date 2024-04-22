@@ -1,0 +1,3 @@
+[submodule "Adv360-Pro-ZMK"]
+	path = Adv360-Pro-ZMK
+	url = https://github.com/brendanjcarlson/Adv360-Pro-ZMK.git
