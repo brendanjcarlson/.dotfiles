@@ -3,25 +3,21 @@ return {
     'stevearc/conform.nvim',
     opts = {
       notify_on_error = false,
-      format_on_save = function(bufnr)
-        local disable_filetypes = { c = true, cpp = true }
-        return {
-          timeout_ms = 500,
-          lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
-        }
-      end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        go = { 'gofumpt', 'goimports', 'goimports-reviser' },
+        go = { 'gofumpt', 'goimports', 'goimports-reviser', 'golines' },
         templ = { 'templ', 'goimports', 'goimports-reviser' },
-        javascript = { { 'prettierd', 'prettier' } },
-        javascriptreact = { { 'prettierd', 'prettier' } },
-        typescript = { { 'prettierd', 'prettier' } },
-        typescriptreact = { { 'prettierd', 'prettier' } },
-        css = { { 'prettierd', 'prettier' } },
-        scss = { { 'prettierd', 'prettier' } },
+        javascript = { { 'biome', 'prettierd', 'prettier' } },
+        javascriptreact = { { 'biome', 'prettierd', 'prettier' } },
+        typescript = { { 'biome', 'prettierd', 'prettier' } },
+        typescriptreact = { { 'biome', 'prettierd', 'prettier' } },
+        css = { { 'prettierd', 'prettier' }, 'stylelint' },
+        scss = { { 'prettierd', 'prettier' }, 'stylelint' },
         html = { { 'prettierd', 'prettier' } },
-        json = { { 'prettierd', 'prettier' } },
+        json = { { 'biome', 'prettierd', 'prettier' } },
+        sh = { 'shfmt' },
+        sql = { 'sql_formatter' },
+        rust = { 'rustfmt' },
       },
     },
   },

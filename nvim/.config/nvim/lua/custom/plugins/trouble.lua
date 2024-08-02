@@ -3,13 +3,11 @@
 --]]
 
 return {
-  {
-    'folke/trouble.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    opts = {},
-    config = function()
-      local set = vim.keymap.set
-      set('n', '<leader>tt', '<cmd>TroubleToggle<CR>')
-    end,
-  },
+    {
+        'folke/trouble.nvim',
+        cmd = "Trouble",
+        config = function()
+            vim.keymap.set('n', '<leader>tt', "<cmd>Trouble diagnostics toggle<CR>")
+        end,
+    },
 }

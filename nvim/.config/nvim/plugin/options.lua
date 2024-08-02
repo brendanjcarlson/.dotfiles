@@ -24,6 +24,7 @@ opt.relativenumber = true
 
 opt.scrolloff = 10
 opt.shiftwidth = 4
+opt.sidescrolloff = 10
 opt.signcolumn = 'yes'
 opt.smartcase = true
 opt.smartindent = true
@@ -33,3 +34,5 @@ opt.splitright = true
 
 opt.tabstop = 4
 opt.timeoutlen = 300
+
+opt.wrap = false
